@@ -3,9 +3,9 @@ data "yandex_compute_image" "image" {
 }
 
 resource "yandex_compute_instance" "vm-1" {
-  name     = var.vm-1_name
-  hostname = var.vm-1_name
-  zone     = var.zone
+  name        = var.vm-1_name
+  hostname    = var.vm-1_name
+  zone        = var.zone
   platform_id = var.platform_id
 
   resources {
@@ -16,15 +16,15 @@ resource "yandex_compute_instance" "vm-1" {
   boot_disk {
     initialize_params {
       type     = var.disk_type
-      image_id = data.yandex_compute_image.image.id
+      image_id = "fd8pfd17g205ujpmpb0a" # Ubuntu 24.04
       size     = var.disk_size
     }
   }
 
   network_interface {
-    subnet_id            = yandex_vpc_subnet.infra_subnet[0].id
-    nat                  = var.nat
-    security_group_ids   = [yandex_vpc_security_group.infra_sg.id]
+    subnet_id          = yandex_vpc_subnet.infra_subnet[0].id
+    nat                = var.nat
+    security_group_ids = [yandex_vpc_security_group.infra_sg.id]
   }
 
   metadata = {

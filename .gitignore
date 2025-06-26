@@ -1,2 +1,5 @@
 .env
 .DS_Store
+infra/key.json
+infra/terraform.tfvars
+infra/.terraform*
